@@ -1,1 +1,3 @@
 * last.fm APIs
+
+Set your username and API key of lastfm(https://www.last.fm/api/)
