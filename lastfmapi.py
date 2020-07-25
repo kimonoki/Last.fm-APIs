@@ -17,4 +17,4 @@ params = dict(
 def album():
     resp = requests.get(url=url, params=params)
     album = resp.json()['recenttracks']['track'][0]['album']['#text']
-    return album
+    return album or "Can't Get Album"
