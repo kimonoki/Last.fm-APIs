@@ -13,13 +13,19 @@ params = dict(
     format='json'
 )
 
+#usage LastfmInfo(params, url).get_lastfm_info('artist') or LastfmInfo(params, url).get_lastfm_info('album')
+class LastfmInfo:
+    def __init__(self, params,url):
+        self.params = params
+        self.url = url
 
-def album():
-    resp = requests.get(url=url, params=params)
-    album = resp.json()['recenttracks']['track'][0]['album']['#text']
-    return album or "Can't Get Album"
+    def __str__(self):
+        return f'{self.params["user"]} - {self.params["api_key"]}'
 
-def artist():
-    resp = requests.get(url=url, params=params)
-    artist = resp.json()['recenttracks']['track'][0]['artist']['#text']
-    return artist
+    def get_lastfm_info(self, metadata):
+        try:
+            r = requests.get(url=self.url, params=self.params)
+            return r.json()['recenttracks']['track'][0][metadata]['#text']
+        except Exception as e:
+            print(e)
+            return None
