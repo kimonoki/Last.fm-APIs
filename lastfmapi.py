@@ -18,3 +18,8 @@ def album():
     resp = requests.get(url=url, params=params)
     album = resp.json()['recenttracks']['track'][0]['album']['#text']
     return album or "Can't Get Album"
+
+def artist():
+    resp = requests.get(url=url, params=params)
+    artist = resp.json()['recenttracks']['track'][0]['artist']['#text']
+    return artist
